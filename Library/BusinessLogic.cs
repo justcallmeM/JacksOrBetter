@@ -1,16 +1,24 @@
-﻿using System;
+﻿using Library.Utilities;
+using System;
 
 namespace Library
 {
     public class BusinessLogic : IBusinessLogic
     {
-        public BusinessLogic()
-        {
+        IDeck _deck;
 
+        public BusinessLogic(IDeck deck)
+        {
+            _deck = deck;
         }
         public void OutputResults()
         {
+            _deck.ArrangeCards();
 
+            foreach(Card card in _deck.deckOfCards)
+            {
+                Console.WriteLine(card.suit+ card.sign);
+            }
         }
     }
 }
