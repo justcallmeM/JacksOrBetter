@@ -13,7 +13,7 @@ namespace Library
         }
         public void OutputResults()
         {
-            _deck.ArrangeCards();
+            _deck.ConstructDeck();
 
             foreach(Card card in _deck.deckOfCards)
             {

@@ -10,7 +10,7 @@ namespace Library.Utilities
         public List<string> cardSignVariations { get { return new List<string>() { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" }; } }
         public List<string> cardSuitVariations { get { return new List<string>() { "D", "C", "S", "H" }; } }
 
-        public void ArrangeCards()
+        public void ConstructDeck()
         {
             deckOfCards = new List<ICard>();
             Random random = new Random();
@@ -21,11 +21,11 @@ namespace Library.Utilities
 
                 do
                 {
-                    _newcard.sign = cardSignVariations[random.Next(0, 12)];
-                    _newcard.suit = cardSuitVariations[random.Next(0, 3)];
+                    _newcard.sign = cardSignVariations[random.Next(0, 13)];
+                    _newcard.suit = cardSuitVariations[random.Next(0, 4)];
                 }
-                while ();
-                //equaling reference types...
+                while (deckOfCards.Exists(x => x.sign == _newcard.sign && x.suit == _newcard.suit));
+
                 deckOfCards.Add(_newcard);
             }
         }

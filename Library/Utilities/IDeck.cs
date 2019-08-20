@@ -8,6 +8,6 @@ namespace Library.Utilities
         List<string> cardSuitVariations { get; }
         List<ICard> deckOfCards { get; set; }
 
-        void ArrangeCards();
+        void ConstructDeck();
     }
 }
