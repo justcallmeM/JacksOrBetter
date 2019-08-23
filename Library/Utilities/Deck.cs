@@ -6,25 +6,22 @@ namespace Library.Utilities
 {
     public class Deck : IDeck
     {
+        public Player Player { get; set; }
         public List<ICard> deckOfCards { get; set; }
         public List<string> cardSignVariations { get { return new List<string>() { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" }; } }
         public List<string> cardSuitVariations { get { return new List<string>() { "D", "C", "S", "H" }; } }
 
-        //private IPlayer _player;
+        Random random = new Random();
 
-        public IPlayer Player { get; set; }
-
-        public Deck(IPlayer player)
+        public Deck()
         {
-            Player = player;
+            Player = new Player();
+            deckOfCards = new List<ICard>();
         }
 
         //Programos paleidime - sis metodas - 1
         public void ConstructDeck()
         {
-            deckOfCards = new List<ICard>();
-            Random random = new Random();
-
             for (int i = 0; i < 52; i++)
             {
                 ICard _newcard = new Card();
@@ -39,17 +36,46 @@ namespace Library.Utilities
                 deckOfCards.Add(_newcard);
             }
         }
-
         //Programos paleidime - sis metodas - 2
         public void DealCards()
         {
-            Random random = new Random();
-            Player.hand = new List<ICard>();
+            int total = 51;
 
             for(int i = 0; i < 5; i++)
             {
-                int number = random.Next(0, 51);
+                int number = random.Next(0, total);
                 Player.hand.Add(deckOfCards[number]);
+                deckOfCards.Remove(deckOfCards[number]);
+                total--;
+            }
+        }
+        public void ChangeCards()
+        {
+            //missing exception
+            int total = 46;
+            Console.WriteLine("kokias kortas norėtumėte pakeisti?");
+            string cards = Console.ReadLine();
+            int length = cards.Length;
+            List<ICard> cardsToRemove = new List<ICard>();
+
+            //parse the string and add the cards to the which cards would the player like to remove list.
+            for(int i=0; i<length; i++)
+            {
+                Int32.TryParse(cards.Substring(i, 1), out int result);
+                cardsToRemove.Add(Player.hand[result]);
+            }
+
+            foreach(ICard card in cardsToRemove)
+            {
+                Player.hand.Remove(card);
+            }
+            //add different cards, but the same amount that was discarded to the hand of the player.
+            for (int i = 0; i < length; i++)
+            {
+                int number = random.Next(0, total);
+                Player.hand.Add(deckOfCards[number]);
+                deckOfCards.Remove(deckOfCards[number]);
+                total--;
             }
         }
     }

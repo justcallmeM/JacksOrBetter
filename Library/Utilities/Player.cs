@@ -4,19 +4,13 @@ using System.Text;
 
 namespace Library.Utilities
 {
-    public class Player : IPlayer
+    public class Player
     {
         public List<ICard> hand { get; set; }
-        //IDeck _deck;
 
-        //public Player(IDeck deck)
-        //{
-        //    _deck = deck;
-        //}
-
-        //public void changeCards()
-        //{
-
-        //}
+        public Player()
+        {
+            hand = new List<ICard>();
+        }
     }
 }
