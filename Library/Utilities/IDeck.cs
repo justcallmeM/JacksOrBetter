@@ -8,6 +8,9 @@ namespace Library.Utilities
         List<string> cardSuitVariations { get; }
         List<ICard> deckOfCards { get; set; }
 
+        IPlayer Player { get; set; }
+
         void ConstructDeck();
+        void DealCards();
     }
 }

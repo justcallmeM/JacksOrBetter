@@ -16,6 +16,7 @@ namespace JacksOrBetter
             builder.RegisterType<BusinessLogic>().As<IBusinessLogic>();
             builder.RegisterType<Library.Utilities.Card>().As<Library.Utilities.ICard>();
             builder.RegisterType<Library.Utilities.Deck>().As<Library.Utilities.IDeck>();
+            builder.RegisterType<Library.Utilities.Player>().As<Library.Utilities.IPlayer>();
 
             return builder.Build();
         }
