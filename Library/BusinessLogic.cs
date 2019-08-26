@@ -30,7 +30,9 @@ namespace Library
                 Console.WriteLine(card.suit + card.sign);
             }
 
-            _scorer.CalculateScore(_deck);
+            int result = _scorer.AssignScore((Scorer.Combination)_scorer.CheckHand(_deck));
+
+            Console.WriteLine("your score:" + result);
         }
     }
 }
