@@ -6,10 +6,12 @@ namespace Library
     public class BusinessLogic : IBusinessLogic
     {
         IScorer _scorer;
+        IScoreCalculations _scoreCalculations;
 
-        public BusinessLogic(IScorer scorer)
+        public BusinessLogic(IScorer scorer, IScoreCalculations scoreCalculations)
         {
             _scorer = scorer;
+            _scoreCalculations = scoreCalculations;
         }
         public void OutputResults()
         {
@@ -30,7 +32,7 @@ namespace Library
                 Console.WriteLine(card.suit + card.sign);
             }
 
-            int result = _scorer.AssignScore((Scorer.Combination)_scorer.CheckHand(_deck));
+            int result = _scoreCalculations.AssignScore((Scorer.Combination)_scorer.HandValue(_scorer.CheckHand(_deck),_deck));
 
             Console.WriteLine("your score:" + result);
         }

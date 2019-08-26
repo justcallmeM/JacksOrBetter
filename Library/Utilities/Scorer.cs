@@ -8,10 +8,9 @@ namespace Library.Utilities
     {
         public enum Combination { RoyalFlush, StraightFlush, FourOfaKind, FullHouse, Flush, Straight, ThreeOfaKind, TwoPair, JacksOrBetter, Other }
 
-        public int CheckHand(Deck deck)
+        public List<int> CheckHand(Deck deck)
         {
             List<int> hand = new List<int>();
-            int scoreID = 0;
 
             foreach (ICard card in deck.Player.hand)
             {
@@ -39,8 +38,14 @@ namespace Library.Utilities
 
             hand.Sort();
 
+            return hand;
+        }
+
+        public int HandValue(List<int> hand, Deck deck)
+        {
+            int scoreID = 0;
+
             bool jack = CheckJackOrBetter(hand);
-            //bool pair = CheckPair(hand);
             bool twoPair = CheckTwoPair(hand);
             bool triple = CheckTrips(hand);
             bool straight = CheckStraight(hand);
@@ -48,8 +53,9 @@ namespace Library.Utilities
             bool fullHouse = CheckFullHouse(hand);
             bool quads = CheckQuads(hand);
             bool straightFlush = CheckStraightFlush(hand, deck.Player.hand);
+            //bool pair = CheckPair(hand);
 
-            if (straightFlush) {scoreID = 1;}
+            if (straightFlush) { scoreID = 1; }
             else if (quads) { scoreID = 2; }
             else if (fullHouse) { scoreID = 3; }
             else if (flush) { scoreID = 4; }
@@ -106,36 +112,6 @@ namespace Library.Utilities
         public bool CheckStraightFlush(List<int> hand, List<ICard> cards)
         {
             return CheckFlush(cards) && CheckStraight(hand);
-        }
-
-        //paduosi enum'a kazkoki kai metodas apdoros rankoje turimas kortas.
-        public int AssignScore(Combination combination)
-        {
-            switch (combination)
-            {
-                case Combination.RoyalFlush:
-                    return 800;
-                case Combination.StraightFlush:
-                    return 50;
-                case Combination.FourOfaKind:
-                    return 25;
-                case Combination.FullHouse:
-                    return 9;
-                case Combination.Flush:
-                    return 6;
-                case Combination.Straight:
-                    return 4;
-                case Combination.ThreeOfaKind:
-                    return 3;
-                case Combination.TwoPair:
-                    return 2;
-                case Combination.JacksOrBetter:
-                    return 1;
-                case Combination.Other:
-                    return 0;
-                default:
-                    return 404;
-            }
         }
     }
 }

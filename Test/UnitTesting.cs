@@ -6,15 +6,15 @@ using Xunit;
 
 namespace Test
 {
-    public class TestDeck
+    public class TestLogic
     {
         Deck deck = new Deck();
+        Scorer scorer = new Scorer();
 
         [Fact]
         public void DeckConstructionTest()
         {
             //Arrange
-            
             Card S2 = new Card() { suit = "S", sign = "2" };
             Card S3 = new Card() { suit = "S", sign = "3" };
             Card S4 = new Card() { suit = "S", sign = "4" };
@@ -79,6 +79,31 @@ namespace Test
             deck.ConstructDeck();
             //Assert
             CollectionAssert.AreEquivalent(cards, deck.deckOfCards);
+        }
+
+        //Arrange-Part1/2
+        [Xunit.Theory]
+        [InlineData((object)(new object[] { 11, 2, 3, 4, 5 }),  8)] //JackOrMore
+        [InlineData((object)(new object[] { 11, 11, 4, 4, 5 }), 7)] //TwoPair
+        [InlineData((object)(new object[] { 11, 11, 11, 4, 5 }), 6)] //Triple
+        [InlineData((object)(new object[] { 2, 3, 4, 5, 6 }), 5)] //Straight
+        [InlineData((object)(new object[] { 9, 2, 3, 4, 5 }), 4)] //Flush
+        [InlineData((object)(new object[] { 2, 2, 3, 3, 3 }), 3)] //FullHouse
+        [InlineData((object)(new object[] { 11, 11, 11, 11, 5 }), 2)] //Quads
+        [InlineData((object)(new object[] { 2, 3, 4, 5, 6 }), 1)] //StraightFlush
+        public void AssignScoreTest_WhenProvidingAHandCheckIfTheReturnValueIsCorrect(object[] a, int expected)
+        {
+            //TODO: check for flush.
+            //Arrange-Part2/2
+            List<int> hand = new List<int>();
+            foreach(int number in a)
+            {
+                hand.Add(number);
+            }
+            //Act
+            int result = scorer.HandValue(hand, deck);
+            //Assert
+            Xunit.Assert.Equal(expected, result);
         }
     }
 }
