@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Library.Utilities
 {
-    class ScoreCalculations2 : IScoreCalculations
+    public class ScoreCalculations2 : IScoreCalculations
     {
         public int AssignScore(Scorer.Combination combination)
         {

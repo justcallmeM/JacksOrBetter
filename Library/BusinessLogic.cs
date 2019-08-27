@@ -20,16 +20,16 @@ namespace Library
             _deck.ConstructDeck();
             _deck.DealCards();
 
-            foreach (ICard card in _deck.Player.hand)
+            foreach (ICard card in _deck.Player.Hand)
             {
-                Console.WriteLine(card.suit + card.sign);
+                Console.WriteLine(card.Suit + card.Sign);
             }
 
             _deck.ChangeCards();
 
-            foreach (ICard card in _deck.Player.hand)
+            foreach (ICard card in _deck.Player.Hand)
             {
-                Console.WriteLine(card.suit + card.sign);
+                Console.WriteLine(card.Suit + card.Sign);
             }
 
             int result = _scoreCalculations.AssignScore((Scorer.Combination)_scorer.HandValue(_scorer.CheckHand(_deck),_deck));

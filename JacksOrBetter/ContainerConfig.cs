@@ -17,7 +17,7 @@ namespace JacksOrBetter
             builder.RegisterType<Library.Utilities.Card>().As<Library.Utilities.ICard>();
             builder.RegisterType<Library.Utilities.Deck>().As<Library.Utilities.IDeck>();
             builder.RegisterType<Library.Utilities.Scorer>().As<Library.Utilities.IScorer>();
-            builder.RegisterType<Library.Utilities.ScoreCalculations>().As<Library.Utilities.IScoreCalculations>();
+            builder.RegisterType<Library.Utilities.ScoreCalculations2>().As<Library.Utilities.IScoreCalculations>();
 
             return builder.Build();
         }

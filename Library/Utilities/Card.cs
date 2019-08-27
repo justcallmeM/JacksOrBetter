@@ -6,7 +6,7 @@ namespace Library.Utilities
 {
     public class Card : ICard
     {
-        public string suit { get; set; }
-        public string sign { get; set; }
+        public string Suit { get; set; }
+        public string Sign { get; set; }
     }
 }

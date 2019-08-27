@@ -7,16 +7,16 @@ namespace Library.Utilities
     public class Deck : IDeck
     {
         public Player Player { get; set; }
-        public List<ICard> deckOfCards { get; set; }
-        public List<string> cardSignVariations { get { return new List<string>() { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" }; } }
-        public List<string> cardSuitVariations { get { return new List<string>() { "D", "C", "S", "H" }; } }
+        public List<ICard> DeckOfCards { get; set; }
+        public List<string> CardSignVariations { get { return new List<string>() { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" }; } }
+        public List<string> CardSuitVariations { get { return new List<string>() { "D", "C", "S", "H" }; } }
 
         Random random = new Random();
 
         public Deck()
         {
             Player = new Player();
-            deckOfCards = new List<ICard>();
+            DeckOfCards = new List<ICard>();
         }
 
         //Programos paleidime - sis metodas - 1
@@ -28,12 +28,12 @@ namespace Library.Utilities
 
                 do
                 {
-                    _newcard.sign = cardSignVariations[random.Next(0, 13)];
-                    _newcard.suit = cardSuitVariations[random.Next(0, 4)];
+                    _newcard.Sign = CardSignVariations[random.Next(0, 13)];
+                    _newcard.Suit = CardSuitVariations[random.Next(0, 4)];
                 }
-                while (deckOfCards.Exists(x => x.sign == _newcard.sign && x.suit == _newcard.suit));
+                while (DeckOfCards.Exists(x => x.Sign == _newcard.Sign && x.Suit == _newcard.Suit));
 
-                deckOfCards.Add(_newcard);
+                DeckOfCards.Add(_newcard);
             }
         }
         //Programos paleidime - sis metodas - 2
@@ -44,8 +44,8 @@ namespace Library.Utilities
             for(int i = 0; i < 5; i++)
             {
                 int number = random.Next(0, total);
-                Player.hand.Add(deckOfCards[number]);
-                deckOfCards.Remove(deckOfCards[number]);
+                Player.Hand.Add(DeckOfCards[number]);
+                DeckOfCards.Remove(DeckOfCards[number]);
                 total--;
             }
         }
@@ -62,19 +62,19 @@ namespace Library.Utilities
             for(int i=0; i<length; i++)
             {
                 Int32.TryParse(cards.Substring(i, 1), out int result);
-                cardsToRemove.Add(Player.hand[result]);
+                cardsToRemove.Add(Player.Hand[result]);
             }
 
             foreach(ICard card in cardsToRemove)
             {
-                Player.hand.Remove(card);
+                Player.Hand.Remove(card);
             }
             //add different cards, but the same amount that was discarded to the hand of the player.
             for (int i = 0; i < length; i++)
             {
                 int number = random.Next(0, total);
-                Player.hand.Add(deckOfCards[number]);
-                deckOfCards.Remove(deckOfCards[number]);
+                Player.Hand.Add(DeckOfCards[number]);
+                DeckOfCards.Remove(DeckOfCards[number]);
                 total--;
             }
         }

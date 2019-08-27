@@ -12,9 +12,9 @@ namespace Library.Utilities
         {
             List<int> hand = new List<int>();
 
-            foreach (ICard card in deck.Player.hand)
+            foreach (ICard card in deck.Player.Hand)
             {
-                switch (card.sign)
+                switch (card.Sign)
                 {
                     case "J":
                         hand.Add(10);
@@ -30,7 +30,7 @@ namespace Library.Utilities
                         hand.Add(1);
                         break;
                     default:
-                        Int32.TryParse(card.sign, out int number);
+                        Int32.TryParse(card.Sign, out int number);
                         hand.Add(number);
                         break;
                 }
@@ -49,10 +49,10 @@ namespace Library.Utilities
             bool twoPair = CheckTwoPair(hand);
             bool triple = CheckTrips(hand);
             bool straight = CheckStraight(hand);
-            bool flush = CheckFlush(deck.Player.hand);
+            bool flush = CheckFlush(deck.Player.Hand);
             bool fullHouse = CheckFullHouse(hand);
             bool quads = CheckQuads(hand);
-            bool straightFlush = CheckStraightFlush(hand, deck.Player.hand);
+            bool straightFlush = CheckStraightFlush(hand, deck.Player.Hand);
             //bool pair = CheckPair(hand);
 
             if (straightFlush) { scoreID = 1; }
@@ -106,7 +106,7 @@ namespace Library.Utilities
 
         public bool CheckFlush(List<ICard> hand)
         {
-            return hand.GroupBy(card => card.suit).Count(group => group.Count() >= 5) == 1;
+            return hand.GroupBy(card => card.Suit).Count(group => group.Count() >= 5) == 1;
         }
 
         public bool CheckStraightFlush(List<int> hand, List<ICard> cards)

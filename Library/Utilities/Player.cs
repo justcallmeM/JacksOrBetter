@@ -6,11 +6,11 @@ namespace Library.Utilities
 {
     public class Player
     {
-        public List<ICard> hand { get; set; }
+        public List<ICard> Hand { get; set; }
 
         public Player()
         {
-            hand = new List<ICard>();
+            Hand = new List<ICard>();
         }
     }
 }

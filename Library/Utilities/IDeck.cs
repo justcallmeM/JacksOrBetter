@@ -5,9 +5,9 @@ namespace Library.Utilities
     public interface IDeck
     {
         Player Player { get; set; }
-        List<string> cardSignVariations { get; }
-        List<string> cardSuitVariations { get; }
-        List<ICard> deckOfCards { get; set; }
+        List<string> CardSignVariations { get; }
+        List<string> CardSuitVariations { get; }
+        List<ICard> DeckOfCards { get; set; }
 
         void ConstructDeck();
         void DealCards();

@@ -2,7 +2,7 @@
 {
     public interface ICard
     {
-        string sign { get; set; }
-        string suit { get; set; }
+        string Sign { get; set; }
+        string Suit { get; set; }
     }
 }
